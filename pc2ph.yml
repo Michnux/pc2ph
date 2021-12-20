@@ -9,7 +9,7 @@ volume-size: 20
 groups: [UTILS]
 
 inputs:
-  - name: Choose PointCloud
+  - name: input_pc
     display-name: Choose PointCloud
     description: PointCloud file (.las)
     kind: dataset

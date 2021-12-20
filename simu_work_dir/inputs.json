@@ -1,0 +1,17 @@
+{
+	"parameters":{
+		"grid_size": 0.2
+	},
+	"inputs":{
+		"input_pc":{
+			"_id": "xxxxxxxx",
+			"name": "dataset_name",
+			"components":[
+				{
+					"name":"input.las",
+					"path": "path/to/file.las"
+				}
+			]
+		}
+	}
+}
