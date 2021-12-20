@@ -2,3 +2,5 @@
 *.tif
 *.aux.xml
 *.pyc
+
+DockerRegistryCredentials.json
