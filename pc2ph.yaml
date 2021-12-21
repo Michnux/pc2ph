@@ -1,9 +1,10 @@
 ---
-spec-version: v0.1
+spec-version: v1.0
 name: alteiademo/pc2ph
 display-name: PointCloud to PlantHeight (convertion)
+version: 1.0.0
 description: Generate a PlantHeight format (.tif) from a PointCloud (.las)
-docker-image: 348021583196.dkr.ecr.eu-west-1.amazonaws.com/annotations2pdf:latest
+docker-image: registry-1.docker.io/michaeldelagarde/pc2ph:latest
 instance-type: small
 volume-size: 20
 groups: [UTILS]
@@ -14,7 +15,7 @@ inputs:
     description: PointCloud file (.las)
     kind: dataset
     schema:
-      type: pc
+      type: pcl
     required: true
 
 parameters:
@@ -22,17 +23,17 @@ parameters:
     display-name: 'Grid Size (m) - Default: 0.2m'
     description: The resolution of the output raster in m
     schema:
-      type: float
+      type: string
     required: False
 
 
 deliverables:
-  - name: PlantHeight
+  - name: plant_height
     display-name: PlantHeight
     description: Generated PlantHeight (.tif)
     kind: dataset
     schema:
-      type: PlantHeight
+      type: raster
     required: true
 
 

@@ -7,7 +7,7 @@ import subprocess
 import json
 
 
-def pc2ph(file_path, grid_size):
+def pc2ph(file_path, grid_size, WORKING_DIR):
 
 
 	# get the crs from the las file
@@ -16,10 +16,10 @@ def pc2ph(file_path, grid_size):
 
 
 	pipeline_max = [
-		"/home/work_dir/input.las",
+		file_path,
 		{
 			"type":"writers.gdal",
-			"filename":"max.tif",
+			"filename":str(WORKING_DIR/"max.tif"),
 			"output_type":"max",
 			"gdaldriver":"GTiff",
 			"window_size":3,
@@ -28,10 +28,10 @@ def pc2ph(file_path, grid_size):
 	]
 
 	pipeline_min = [
-		"/home/work_dir/input.las",
+		file_path,
 		{
 			"type":"writers.gdal",
-			"filename":"min.tif",
+			"filename":str(WORKING_DIR/"min.tif"),
 			"output_type":"min",
 			"gdaldriver":"GTiff",
 			"window_size":3,
@@ -39,21 +39,21 @@ def pc2ph(file_path, grid_size):
 		}
 	]
 
-	with open('pipeline_max.json', 'w') as outfile:
+	with open(WORKING_DIR / 'pipeline_max.json', 'w') as outfile:
 		json.dump(pipeline_max, outfile)
-	with open('pipeline_min.json', 'w') as outfile:
+	with open(WORKING_DIR / 'pipeline_min.json', 'w') as outfile:
 		json.dump(pipeline_min, outfile)
 
 	#generate 2 rasters: max and min (description of pipelines in .json files)
-	subprocess.run('pdal pipeline pipeline_max.json', shell=True)
-	subprocess.run('pdal pipeline pipeline_min.json', shell=True)
+	subprocess.run('pdal pipeline '+str(WORKING_DIR/'pipeline_max.json'), shell=True)
+	subprocess.run('pdal pipeline '+str(WORKING_DIR/'pipeline_min.json'), shell=True)
 	# subprocess.run('pdal pipeline '+json.dumps(pipeline_max), shell=True)
 	# subprocess.run('pdal pipeline '+json.dumps(pipeline_min), shell=True)
 
-	dataset_max = rio.open('./max.tif')
-	dataset_min = rio.open('./min.tif')
+	dataset_max = rio.open(WORKING_DIR/'max.tif')
+	dataset_min = rio.open(WORKING_DIR/'min.tif')
 
-	new_dataset = rio.open('./output.tif', 'w',
+	new_dataset = rio.open(WORKING_DIR/'output.tif', 'w',
 									driver = dataset_max.driver,
 									nodata = dataset_max.nodata,
 									height=dataset_max.height, width=dataset_max.width,

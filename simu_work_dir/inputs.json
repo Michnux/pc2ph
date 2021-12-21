@@ -8,8 +8,8 @@
 			"name": "dataset_name",
 			"components":[
 				{
-					"name":"input.las",
-					"path": "path/to/file.las"
+					"filename":"input.las",
+					"path": "/home/work_dir/input.las"
 				}
 			]
 		}

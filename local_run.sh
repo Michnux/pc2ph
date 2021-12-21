@@ -4,7 +4,7 @@
 #     - host machine simu_work_dir mapped to /home/work_dir in the docker
 #     - env variable DELAIRSTACK_PROCESS_WORKDIR set to /home/work_dir/
 
-# please note that simu_work_dir should contain a simulated input.json file as it will be set when running the docker on Alteia
+# please note that simu_work_dir should contain a simulated inputs.json file as it will be set when running the docker on Alteia
 
 
 

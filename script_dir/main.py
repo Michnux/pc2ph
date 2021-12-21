@@ -6,6 +6,8 @@ from pathlib import Path
 import sys
 from pc2ph import pc2ph
 
+import time
+
 
 LOG_FORMAT = '[%(levelname)s] %(message)s'
 logging.basicConfig(stream=sys.stdout, level=logging.DEBUG, format=LOG_FORMAT)
@@ -27,16 +29,26 @@ def main():
 		raise KeyError('DELAIRSTACK_PROCESS_WORKDIR environment variable must be defined')
 	WORKING_DIR = Path(WORKING_DIR).resolve()
 
+	logging.debug('WORKING_DIR :')	
+	logging.debug(WORKING_DIR)
+
 
 	logging.debug('Extracting inputs and parameters...')
 	# Retrieve inputs and parameters from inputs.json
 	inputs, parameters = load_inputs(WORKING_DIR / 'inputs.json')
 
+	logging.debug('inputs :')	
 	logging.debug(inputs)
+	logging.debug('parameters :')	
 	logging.debug(parameters)
 
-	file_path = WORKING_DIR / inputs.get('input_pc').get('components')[0]['name']
-	grid_size = parameters.get('grid_size')
+	# file_path = WORKING_DIR / inputs.get('input_pc').get('components')[0]['filename']
+	file_path = inputs.get('input_pc').get('components')[0]['path']
+	grid_size = parameters.get('grid_size') #str or None
+	if not grid_size:
+		grid_size = 0.2
+	else:
+		grid_size = float(grid_size) #to float
 
 	logging.debug(file_path)
 	logging.debug(grid_size)
@@ -44,7 +56,30 @@ def main():
 	if not grid_size:
 		grid_size=0.2
 
-	pc2ph(file_path, grid_size)
+	pc2ph(file_path, grid_size, WORKING_DIR)
+
+	outpath = WORKING_DIR / 'output.tif'
+	output = {
+		"outputs": {
+			"plant_height": {  # Must match the name of deliverable in rust-detector.yaml
+				"type": "raster",
+				"format": "tif",
+				"category": "PlantHeight",
+				"name": "PlantHeight",
+				"components": [
+					{
+						"name": "output.tif",
+						"path": str(outpath)
+					}
+				]
+			}
+		},
+		"version": "0.1"
+	}
+	with open(WORKING_DIR / 'outputs.json', 'w+') as f:
+		json.dump(output, f)
+
+
 
 
 

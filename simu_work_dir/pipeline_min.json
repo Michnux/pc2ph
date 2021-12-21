@@ -1,11 +1,1 @@
-[
-    "input.las",
-    {
-        "type":"writers.gdal",
-        "filename":"min.tif",
-        "output_type":"min",
-        "gdaldriver":"GTiff",
-        "window_size":3,
-        "resolution":0.2
-    }
-]
+["/home/work_dir/input.las", {"type": "writers.gdal", "filename": "/home/work_dir/min.tif", "output_type": "min", "gdaldriver": "GTiff", "window_size": 3, "resolution": 0.2}]

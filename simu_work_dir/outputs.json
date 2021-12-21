@@ -1,1 +1,1 @@
-{"outputs": {"pdf_report": {"type": "file", "format": "pdf", "name": "Annotation report", "components": [{"name": "file", "path": "C:\\Users\\michael.delagarde\\Documents\\DEV\\annotations2pdf\\work_dir\\Annotations2pdf.pdf"}]}}, "version": "0.1"}
+{"outputs": {"plant_height": {"type": "raster", "format": "tif", "category": "PlantHeight", "name": "PlantHeight", "components": [{"name": "output.tif", "path": "/home/work_dir/output.tif"}]}}, "version": "0.1"}

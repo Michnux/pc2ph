@@ -9,5 +9,5 @@ RUN /opt/conda/bin/python -m pip install laspy
 
 COPY script_dir /home/script_dir/
 
-# CMD ["python", "/home/script_dir/main.py"]
-CMD ["sleep", "1d"]
+CMD ["python", "/home/script_dir/main.py"]
+#CMD ["sleep", "1d"]
