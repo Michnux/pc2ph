@@ -9,7 +9,7 @@ def upload_dataset(file_path, project_id, mission_id, script_dir):
 	new_dataset = sdk.datasets.create_raster_dataset(	name='output_plantheight',
 														project=project_id,
 														mission=mission_id,
-														categories=['Plant height'])
+														categories=['vegetation heights'])
 
 	sdk.datasets.upload_file(dataset=new_dataset.id,
 							 component='raster',
@@ -18,4 +18,4 @@ def upload_dataset(file_path, project_id, mission_id, script_dir):
 
 if __name__ == "__main__":
 
-	upload_dataset('../work_dir/output.tif', '61c1d5a73e614e00085c6a01', '61c4aeffd730570008b5e7c9')
+	upload_dataset('../work_dir/output.tif', '61c1d5a73e614e00085c6a01', '61c4aeffd730570008b5e7c9', './')
