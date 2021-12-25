@@ -8,6 +8,8 @@ from pc2ph import pc2ph
 
 import time
 
+from upload_dataset import upload_dataset
+
 
 LOG_FORMAT = '[%(levelname)s] %(message)s'
 logging.basicConfig(stream=sys.stdout, level=logging.DEBUG, format=LOG_FORMAT)
@@ -52,11 +54,12 @@ def main():
 
 	logging.debug(file_path)
 	logging.debug(grid_size)
-
-	if not grid_size:
-		grid_size=0.2
+	
 
 	pc2ph(file_path, grid_size, WORKING_DIR)
+
+
+	logging.debug('Generating outputs.json file...')
 
 	outpath = WORKING_DIR / 'output.tif'
 	output = {
@@ -64,21 +67,26 @@ def main():
 			"plant_height": {  # Must match the name of deliverable in rust-detector.yaml
 				"type": "raster",
 				"format": "tif",
-				"category": "PlantHeight",
-				"name": "PlantHeight",
+				# "categories": ["PlantHeight"],
+				"name": "plant_height",
 				"components": [
 					{
-						"name": "output.tif",
+						"name": "output",
+						# "filename": "output.tif",
 						"path": str(outpath)
 					}
 				]
 			}
 		},
-		"version": "0.1"
+		"version": "v1.0"
 	}
 	with open(WORKING_DIR / 'outputs.json', 'w+') as f:
 		json.dump(output, f)
 
+	script_dir = str(SCRIPT_DIR)
+	upload_dataset(str(outpath), project_id, mission_id, script_dir)
+
+	logging.debug('End.')
 
 
 

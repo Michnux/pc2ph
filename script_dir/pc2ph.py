@@ -5,6 +5,11 @@ import rasterio as rio
 from rasterio.warp import transform
 import subprocess
 import json
+import sys
+import logging
+LOG_FORMAT = '[%(levelname)s] %(message)s'
+logging.basicConfig(stream=sys.stdout, level=logging.DEBUG, format=LOG_FORMAT)
+
 
 
 def pc2ph(file_path, grid_size, WORKING_DIR):
@@ -44,11 +49,15 @@ def pc2ph(file_path, grid_size, WORKING_DIR):
 	with open(WORKING_DIR / 'pipeline_min.json', 'w') as outfile:
 		json.dump(pipeline_min, outfile)
 
+	logging.debug('Generating min and max rasters...')
 	#generate 2 rasters: max and min (description of pipelines in .json files)
 	subprocess.run('pdal pipeline '+str(WORKING_DIR/'pipeline_max.json'), shell=True)
 	subprocess.run('pdal pipeline '+str(WORKING_DIR/'pipeline_min.json'), shell=True)
 	# subprocess.run('pdal pipeline '+json.dumps(pipeline_max), shell=True)
 	# subprocess.run('pdal pipeline '+json.dumps(pipeline_min), shell=True)
+
+
+	logging.debug('Generating diff raster...')
 
 	dataset_max = rio.open(WORKING_DIR/'max.tif')
 	dataset_min = rio.open(WORKING_DIR/'min.tif')
@@ -67,6 +76,7 @@ def pc2ph(file_path, grid_size, WORKING_DIR):
 
 	new_dataset.write(band, 1)
 
+	logging.debug('All done')
 
 
 if __name__ == "__main__":

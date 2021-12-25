@@ -4,3 +4,4 @@
 *.pyc
 
 DockerRegistryCredentials.json
+config-connections.json
