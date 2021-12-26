@@ -3,22 +3,24 @@
 
 import rasterio as rio
 from rasterio.warp import transform
+from rasterio.crs import CRS
 import subprocess
 import json
 import sys
 import logging
+
+
 LOG_FORMAT = '[%(levelname)s] %(message)s'
 logging.basicConfig(stream=sys.stdout, level=logging.DEBUG, format=LOG_FORMAT)
 
 
 
-def pc2ph(file_path, grid_size, WORKING_DIR):
-
+def pc2ph(file_path, grid_size, horizontal_srs_wkt, WORKING_DIR):
 
 	# get the crs from the las file
 	# the same crs will be used for the output raster
-	crs_las = {'init': 'EPSG:3945'}
-
+	# crs_las = {'init': 'EPSG:3945'}
+	crs_las = CRS.from_string(horizontal_srs_wkt)
 
 	pipeline_max = [
 		file_path,

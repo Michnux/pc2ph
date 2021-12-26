@@ -1,17 +1,19 @@
 {
-	"parameters":{
-		"grid_size": 0.2
+	'parameters':{
+		'grid_size': 0.2
 	},
-	"inputs":{
-		"input_pc":{
-			"_id": "xxxxxxxx",
-			"name": "dataset_name",
-			"components":[
-				{
-					"filename":"input.las",
-					"path": "/home/work_dir/input.las"
-				}
-			]
-		}
+	'inputs':{
+
+ {'input_pc': {'ingestion': {'status': 'completed'}, 'categories': [], 'hidden': False, 'published': True, 'source': {'name': 'data-manager'}, '_id': '61c1d644956aae0dfd88a8c8', 'format': 'las', 'components': [{'status': 'available', 'name': 'pcl', 'checksum': None, 'filename': 'input.las', 'size': 77699313, 'path': '/data/61c799788d47880009102a82/inputs/61c1d644956aae0dfd88a8c8/input.las'}], 'name': 'input', 'type': 'pcl',
+
+'project': '61c1d5a73e614e00085c6a01', 
+ 'mission': '61c1d5e013b74f0009e0e837',
+
+ 'horizontal_srs_wkt': 'PROJCS["RGF93 / CC45",GEOGCS["RGF93",DATUM["Reseau_Geodesique_Francais_1993",SPHEROID["GRS 1980",6378137,298.257222101,AUTHORITY["EPSG","7019"]],TOWGS84[0,0,0,0,0,0,0],AUTHORITY["EPSG","6171"]],PRIMEM["Greenwich",0,AUTHORITY["EPSG","8901"]],UNIT["degree",0.0174532925199433,AUTHORITY["EPSG","9122"]],AUTHORITY["EPSG","4171"]],PROJECTION["Lambert_Conformal_Conic_2SP"],PARAMETER["standard_parallel_1",44.25],PARAMETER["standard_parallel_2",45.75],PARAMETER["latitude_of_origin",45],PARAMETER["central_meridian",3],PARAMETER["false_easting",1700000],PARAMETER["false_northing",4200000],UNIT["metre",1,AUTHORITY["EPSG","9001"]],AXIS["X",EAST],AXIS["Y",NORTH],AUTHORITY["EPSG","3945"]]',
+
+ 'vertical_srs_wkt': 'VERT_CS["WGS84 ellipsoid (meters)",VERT_DATUM["Ellipsoid",2002],UNIT["metre",1,AUTHORITY["EPSG","9001"]],AXIS["Up",UP]]',
+
+ 'company': '5c1a2567b3c575583e8a650d', 'creation_user': '5bfc3d2739b8924f530f8475', 'modification_user': '5bfc3d2739b8924f530f8475', 'creation_date': '2021-12-21T13:27:32.746Z', 'modification_date': '2021-12-21T13:29:11.691Z', 'publication_date': '2021-12-21T13:27:32.747Z', 'publication_user': '5bfc3d2739b8924f530f8475', 'tiles': {'tiling_profile': 'potree', 'tile_format': 'binary'}, 'point_count': 2285260}}
+
 	}
 }

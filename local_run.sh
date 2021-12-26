@@ -12,4 +12,4 @@ docker build -t docker-pc2ph .
 docker run -it -v work_dir:/home/work_dir --env DELAIRSTACK_PROCESS_WORKDIR='/home/work_dir/' --name docker-pc2ph_1 docker-pc2ph
 
 
-docker run -it -v C:\Users\michael.delagarde\Documents\DEV\CustomAnalytucs\pc2ph\work_dir:/home/work_dir -e DELAIRSTACK_PROCESS_WORKDIR='/home/work_dir/' --name docker-pc2ph_1 docker-pc2ph
+docker run -it -v C:\Users\michael.delagarde\Documents\DEV\CustomAnalytics\pc2ph\work_dir:/home/work_dir -e DELAIRSTACK_PROCESS_WORKDIR='/home/work_dir/' --name docker-pc2ph_1 docker-pc2ph

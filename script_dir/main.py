@@ -48,6 +48,7 @@ def main():
 	file_path = inputs.get('input_pc').get('components')[0]['path']
 	project_id = inputs.get('input_pc').get('project')
 	mission_id = inputs.get('input_pc').get('mission')
+	horizontal_srs_wkt = inputs.get('input_pc').get('horizontal_srs_wkt')
 	grid_size = parameters.get('grid_size') #str or None
 	if not grid_size:
 		grid_size = 0.2
@@ -58,7 +59,7 @@ def main():
 	logging.debug(grid_size)
 	
 
-	pc2ph(file_path, grid_size, WORKING_DIR)
+	pc2ph(file_path, grid_size, horizontal_srs_wkt, WORKING_DIR)
 
 
 	logging.debug('Generating outputs.json file...')
