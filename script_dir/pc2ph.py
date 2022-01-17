@@ -1,6 +1,3 @@
-# import laspy.file
-# import laspy.header
-
 import rasterio as rio
 from rasterio.warp import transform
 from rasterio.crs import CRS

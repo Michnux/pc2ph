@@ -38,30 +38,30 @@ sdk.analytics.create(name="alteiademo/pc2ph",
 		"name": "grid_size",
 		"display_name": "grid_size",
 		"description": "grid_size",
-		"required": True,
+		"required": False,
 		"scheme": {
 			"type": "string"#, "pattern": "^[0-9]$"
 		}
 	 }],
 	deliverables=[
-	# {
-	# 	"name": "outputtif",
-	# 	"display_name": "outputtif",
-	# 	"description": "outputtif",
-	# 	"scheme": {
-	# 		"type": "string", "pattern": "^[0-9a-f]{24}$"
-	# 	},
-	# 	"source": {
-	# 		"service": "data-manager",
-	# 		"resource": "dataset",
-	# 		"scheme": {
-	# 			"type": "object",
-	# 			"properties": {"type": {"const": "raster"}},
-	# 			"required": ["type"]
-	# 		},
-	# 	},
-	# 	"required": False
-	# }
+	{
+		"name": "plant_height",
+		"display_name": "plant_height",
+		"description": "Plant Height",
+		"scheme": {
+			"type": "string", "pattern": "^[0-9a-f]{24}$"
+		},
+		"source": {
+			"service": "data-manager",
+			"resource": "dataset",
+			"scheme": {
+				"type": "object",
+				"properties": {"type": {"const": "raster"}},
+				"required": ["type"]
+			},
+		},
+		"required": True
+	}
 	],
 	tags=["croquette"],
 	groups=["UTILS"])
